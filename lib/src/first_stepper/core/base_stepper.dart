@@ -11,7 +11,7 @@ class BaseStepper extends StatefulWidget {
   final List<Widget>? children;
   
   //title of each step
-  final List<String> titles;
+  final List<String>? titles;
 
   /// Whether to enable or disable the next and previous buttons.
   final bool nextPreviousButtonsDisabled;
