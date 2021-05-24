@@ -6,6 +6,8 @@ import 'core/base_stepper.dart';
 class IconStepper extends StatelessWidget {
   /// Each icon defines a step. Hence, total number of icons determines the total number of steps.
   final List<Icon>? icons;
+  
+  final List<String>? titles;
 
   /// Whether to enable or disable the next and previous buttons.
   final bool enableNextPreviousButtons;
@@ -75,6 +77,7 @@ class IconStepper extends StatelessWidget {
 
   /// Creates an IconStepper widget.
   IconStepper({
+    required this.titles,
     this.icons,
     this.enableNextPreviousButtons = true,
     this.enableStepTapping = true,
@@ -103,6 +106,7 @@ class IconStepper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseStepper(
+      titles:titles,
       children: _iconsWithSizeOverridden(),
       nextPreviousButtonsDisabled: enableNextPreviousButtons,
       stepTappingDisabled: enableStepTapping,
