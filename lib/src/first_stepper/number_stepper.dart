@@ -5,6 +5,9 @@ import 'core/base_stepper.dart';
 class NumberStepper extends StatelessWidget {
   /// Each number defines a step. Hence, total count of numbers determines the total number of steps.
   final List<int>? numbers;
+  
+  //title of each step
+  final List titles;
 
   /// Whether to enable or disable the next and previous buttons.
   final bool enableNextPreviousButtons;
@@ -78,6 +81,7 @@ class NumberStepper extends StatelessWidget {
   /// Creates a NumberStepper widget.
   NumberStepper({
     this.numbers,
+    this.titles,
     this.enableNextPreviousButtons = true,
     this.enableStepTapping = true,
     this.previousButtonIcon,
@@ -107,6 +111,7 @@ class NumberStepper extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseStepper(
       children: _numbersWrappedInText(),
+      titles:titles,
       nextPreviousButtonsDisabled: enableNextPreviousButtons,
       stepTappingDisabled: enableStepTapping,
       previousButtonIcon: previousButtonIcon,
