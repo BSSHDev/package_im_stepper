@@ -7,7 +7,7 @@ class NumberStepper extends StatelessWidget {
   final List<int>? numbers;
   
   //title of each step
-  final List<String> titles;
+  final List<String>? titles;
 
   /// Whether to enable or disable the next and previous buttons.
   final bool enableNextPreviousButtons;
