@@ -266,13 +266,7 @@ class _BaseStepperState extends State<BaseStepper> {
         ?Row(
     
       children:[
-      DottedLine(
-            length: widget.lineLength/2,
-            color: widget.lineColor ?? Colors.blue,
-            dotRadius: widget.lineDotRadius,
-            spacing: 5.0,
-            axis: axis,
-          ),
+      SizedBox(width: 5,),
         Text(widget.titles![index],style: TextStyle(
                   color: Colors.green,
                   fontSize: 10,
