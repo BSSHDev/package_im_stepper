@@ -278,7 +278,8 @@ class _BaseStepperState extends State<BaseStepper> {
             dotRadius: widget.lineDotRadius,
             spacing: 5.0,
             axis: axis,
-          )
+          ),
+        SizedBox(width: 5,),
       ]
     )
       
