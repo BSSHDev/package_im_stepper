@@ -30,6 +30,7 @@ class _IconStepperDemo extends State<IconStepperDemo> {
           child: Column(
             children: [
               IconStepper(
+                titles:["supervised_user_circle","flag","access_alarm","supervised_user_circle","flag","access_alarm","supervised_user_circle"]
                 icons: [
                   Icon(Icons.supervised_user_circle),
                   Icon(Icons.flag),
