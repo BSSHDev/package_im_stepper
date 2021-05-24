@@ -273,7 +273,7 @@ class _BaseStepperState extends State<BaseStepper> {
             spacing: 5.0,
             axis: axis,
           ),
-        Text(widget.titles[index]),
+        Text(widget.titles![index]),
         DottedLine(
             length: widget.lineLength/2,
             color: widget.lineColor ?? Colors.blue,
