@@ -82,7 +82,7 @@ class BaseStepper extends StatefulWidget {
   /// Creates a basic stepper.
   BaseStepper({
     this.children,
-    this.titles,
+    this.titles=[""],
     this.nextPreviousButtonsDisabled = true,
     this.stepTappingDisabled = true,
     this.previousButtonIcon,
@@ -273,7 +273,7 @@ class _BaseStepperState extends State<BaseStepper> {
             spacing: 5.0,
             axis: axis,
           ),
-        widget.titles.isEmpty?Text(""):Text(widget.titles[index]),
+        widget.titles.length==1?Text(widget.titles[0]):Text(widget.titles[index]),
         DottedLine(
             length: widget.lineLength/2,
             color: widget.lineColor ?? Colors.blue,
