@@ -5,6 +5,8 @@ import 'core/base_stepper.dart';
 class ImageStepper extends StatelessWidget {
   /// Each image defines a step. Hence, total number of images determines the total number of steps.
   final List<ImageProvider<dynamic>>? images;
+  
+  final List<String>? titles;
 
   /// Whether to enable or disable the next and previous buttons.
   final bool enableNextPreviousButtons;
@@ -74,6 +76,7 @@ class ImageStepper extends StatelessWidget {
 
   /// Creates an ImageStepper widget.
   ImageStepper({
+    required this.titles;
     this.images,
     this.enableNextPreviousButtons = true,
     this.enableStepTapping = true,
@@ -103,6 +106,7 @@ class ImageStepper extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseStepper(
       children: _imagesWrappedInCircleAvatar(),
+      titles:titles,
       nextPreviousButtonsDisabled: enableNextPreviousButtons,
       stepTappingDisabled: enableStepTapping,
       previousButtonIcon: previousButtonIcon,
