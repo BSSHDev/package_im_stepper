@@ -76,7 +76,7 @@ class ImageStepper extends StatelessWidget {
 
   /// Creates an ImageStepper widget.
   ImageStepper({
-    required this.titles;
+    required this.titles,
     this.images,
     this.enableNextPreviousButtons = true,
     this.enableStepTapping = true,
