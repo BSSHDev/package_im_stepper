@@ -9,6 +9,9 @@ typedef OnStepReached = void Function(int index);
 class BaseStepper extends StatefulWidget {
   /// Each child defines a step. Hence, total number of children determines the total number of steps.
   final List<Widget>? children;
+  
+  //title of each step
+  final List titles;
 
   /// Whether to enable or disable the next and previous buttons.
   final bool nextPreviousButtonsDisabled;
@@ -79,6 +82,7 @@ class BaseStepper extends StatefulWidget {
   /// Creates a basic stepper.
   BaseStepper({
     this.children,
+    this.titles,
     this.nextPreviousButtonsDisabled = true,
     this.stepTappingDisabled = true,
     this.previousButtonIcon,
@@ -259,13 +263,28 @@ class _BaseStepperState extends State<BaseStepper> {
   /// A customized DottedLine.
   Widget _customizedDottedLine(int index, Axis axis) {
     return index < widget.children!.length - 1
-        ? DottedLine(
-            length: widget.lineLength,
+        ?Row(
+    
+      children:[
+      DottedLine(
+            length: widget.lineLength/2,
+            color: widget.lineColor ?? Colors.blue,
+            dotRadius: widget.lineDotRadius,
+            spacing: 5.0,
+            axis: axis,
+          ),
+        Text(widget.titles[index]),
+        DottedLine(
+            length: widget.lineLength/2,
             color: widget.lineColor ?? Colors.blue,
             dotRadius: widget.lineDotRadius,
             spacing: 5.0,
             axis: axis,
           )
+      ]
+    )
+      
+      
         : Container();
   }
 
