@@ -202,6 +202,9 @@ class _BaseStepperState extends State<BaseStepper> {
         controller: _scrollController,
         physics: widget.scrollingDisabled ? NeverScrollableScrollPhysics() : ClampingScrollPhysics(),
         child: Container(
+          constraints: BoxConstraints(
+    maxWidth: double.infinity,
+),
           margin: const EdgeInsets.symmetric(horizontal: 8.0),
           padding: const EdgeInsets.all(8.0),
           child: widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
