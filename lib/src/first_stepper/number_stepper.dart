@@ -8,6 +8,8 @@ class NumberStepper extends StatelessWidget {
   
   //title of each step
   final List<String>? titles;
+  
+  final double maxwidth;
 
   /// Whether to enable or disable the next and previous buttons.
   final bool enableNextPreviousButtons;
@@ -82,6 +84,7 @@ class NumberStepper extends StatelessWidget {
   NumberStepper({
     required this.titles,
     this.numbers,
+    this.maxwidth,
     this.enableNextPreviousButtons = true,
     this.enableStepTapping = true,
     this.previousButtonIcon,
@@ -112,6 +115,7 @@ class NumberStepper extends StatelessWidget {
     return BaseStepper(
       children: _numbersWrappedInText(),
       titles:titles,
+      maxwidth:maxwidth,
       nextPreviousButtonsDisabled: enableNextPreviousButtons,
       stepTappingDisabled: enableStepTapping,
       previousButtonIcon: previousButtonIcon,
