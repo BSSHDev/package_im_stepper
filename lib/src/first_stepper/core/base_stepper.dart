@@ -192,7 +192,19 @@ class _BaseStepperState extends State<BaseStepper> {
         child:ScrollablePositionedList.builder(
   itemCount: widget.children?.length,
   scrollDirection : widget.direction,
-  itemBuilder: (context, index) => _buildSteps(),
+  itemBuilder: (context, index) => widget.direction == Axis.horizontal
+            ? Row(
+                children: <Widget>[
+                  _customizedIndicator(index),
+                  _customizedDottedLine(index, Axis.horizontal),
+                ],
+              )
+            : Column(
+                children: <Widget>[
+                  _customizedIndicator(index),
+                  _customizedDottedLine(index, Axis.vertical),
+                ],
+              ),
   itemScrollController: itemScrollController,
   itemPositionsListener: itemPositionsListener,
 )
