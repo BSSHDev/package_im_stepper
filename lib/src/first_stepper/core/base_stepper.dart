@@ -205,7 +205,7 @@ class _BaseStepperState extends State<BaseStepper> {
         child: Container(
           
           margin: const EdgeInsets.symmetric(horizontal: 8.0),
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(3.0),
           child: widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
         ),
       ),
