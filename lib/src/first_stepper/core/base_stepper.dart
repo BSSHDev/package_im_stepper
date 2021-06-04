@@ -178,7 +178,7 @@ class _BaseStepperState extends State<BaseStepper> {
     var sizeStepper = _keyStepperRow.currentContext?.size;
     
     var width=sizeStepper?.width;
-    if (width>widget.maxwidth) enable=true;
+    if (width?>widget.maxwidth) enable=true;
     else enable=false;
     return Align(
       alignment: widget.alignment ?? Alignment.center,
