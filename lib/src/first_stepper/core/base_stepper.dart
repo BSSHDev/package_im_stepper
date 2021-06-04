@@ -329,7 +329,7 @@ class _BaseStepperState extends State<BaseStepper> {
             Icon(
               widget.direction == Axis.horizontal ? Icons.arrow_right : Icons.arrow_drop_down,
             ),
-        onPressed:_afterLayout,
+        onPressed:()=>_afterLayout,
         //onPressed: _goToNextStep,
       ),
     );
