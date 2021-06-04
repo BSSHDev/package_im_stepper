@@ -133,6 +133,7 @@ class BaseStepper extends StatefulWidget {
 class _BaseStepperState extends State<BaseStepper> {
   ScrollController? _scrollController;
   late int _selectedIndex;
+  GlobalKey _keyStepperRow = GlobalKey();
 
   @override
   void initState() {
@@ -170,9 +171,34 @@ class _BaseStepperState extends State<BaseStepper> {
       if (_selectedIndex == i) break;
     }
   }
+  
+   /// Builds the stepper.
+  Widget _stepperBuilder() {
+    return Align(
+      alignment: widget.alignment ?? Alignment.center,
+      child: SingleChildScrollView(
+        scrollDirection: widget.direction,
+        controller: _scrollController,
+        physics: widget.scrollingDisabled ? NeverScrollableScrollPhysics() : ClampingScrollPhysics(),
+        child: Container(
+          key: _keyStepperRow,
+          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.all(3.0),
+          child: widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    //get width of _stepperBuilder
+     final RenderBox renderBoxStepper = _keyStepperRow.currentContext.findRenderObject();
+    final sizeStepper = renderBoxStepper.size;
+    final width=sizeStepper.width;
+    if (width>widget.maxwidth) enableNextPreviousButtons=true;
+    else enableNextPreviousButtons=false;
+    
     // Controls scrolling behavior.
     if (!widget.scrollingDisabled) WidgetsBinding.instance!.addPostFrameCallback(_afterLayout);
 
@@ -182,11 +208,11 @@ class _BaseStepperState extends State<BaseStepper> {
             children: <Widget>[
               widget.nextPreviousButtonsDisabled ? _previousButton() : Container(),
              
-               Container(
+               enableNextPreviousButtons?Container(
                  constraints: BoxConstraints(
     maxWidth: widget.maxwidth,
 ),
-                 child:Expanded(child:_stepperBuilder())),
+                 child:_stepperBuilder()):_stepperBuilder(),
               
               widget.nextPreviousButtonsDisabled ? _nextButton() : Container(),
             ],
@@ -202,23 +228,7 @@ class _BaseStepperState extends State<BaseStepper> {
           );
   }
 
-  /// Builds the stepper.
-  Widget _stepperBuilder() {
-    return Align(
-      alignment: widget.alignment ?? Alignment.center,
-      child: SingleChildScrollView(
-        scrollDirection: widget.direction,
-        controller: _scrollController,
-        physics: widget.scrollingDisabled ? NeverScrollableScrollPhysics() : ClampingScrollPhysics(),
-        child: Container(
-          
-          margin: const EdgeInsets.symmetric(horizontal: 8.0),
-          padding: const EdgeInsets.all(3.0),
-          child: widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
-        ),
-      ),
-    );
-  }
+ 
 
   /// Builds the stepper steps.
   List<Widget> _buildSteps() {
