@@ -134,7 +134,7 @@ class BaseStepper extends StatefulWidget {
 class _BaseStepperState extends State<BaseStepper> {
   ScrollController? _scrollController;
   late int _selectedIndex;
-  //int prenext;
+  int prenext=0;
    final ItemScrollController itemScrollController = ItemScrollController();
 
   /// Listener that reports the position of items when the list is scrolled.
@@ -189,7 +189,13 @@ class _BaseStepperState extends State<BaseStepper> {
                constraints: BoxConstraints(
     maxWidth: widget.maxwidth,
 ),
-        child:SingleChildScrollView(
+        child:ScrollablePositionedList.builder(
+  itemCount: widget.children.length,
+  itemBuilder: (context, index) => widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
+  itemScrollController: itemScrollController,
+  itemPositionsListener: itemPositionsListener,
+)
+        /*child:SingleChildScrollView(
         scrollDirection: widget.direction,
         controller: _scrollController,
         physics: widget.scrollingDisabled ? NeverScrollableScrollPhysics() : ClampingScrollPhysics(),
@@ -199,7 +205,9 @@ class _BaseStepperState extends State<BaseStepper> {
           padding: const EdgeInsets.all(3.0),
           child: widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
         ),
-      )),
+      )*/
+      
+      ),
     );
   }
 
@@ -322,7 +330,8 @@ class _BaseStepperState extends State<BaseStepper> {
             Icon(
               widget.direction == Axis.horizontal ? Icons.arrow_left : Icons.arrow_drop_up,
             ),
-        onPressed: _goToPreviousStep,
+        onPressed:_goPrevious,
+       // onPressed: _goToPreviousStep,
       ),
     );
   }
@@ -337,14 +346,31 @@ class _BaseStepperState extends State<BaseStepper> {
             Icon(
               widget.direction == Axis.horizontal ? Icons.arrow_right : Icons.arrow_drop_down,
             ),
-       // onPressed:goNext,
-        onPressed: _goToNextStep,
+        onPressed:_goNext,
+       // onPressed: _goToNextStep,
       ),
     );
   }
   
- 
+ void _goNext() {
+   if(prenext<widget.children.length){
+   prenext=prenext+1;}
+   itemScrollController.scrollTo(
+  index: prenext,
+  duration: widget.stepReachedAnimationDuration,
+        curve: widget.stepReachedAnimationEffect);
+ }
 
+  void _goPrevious() {
+    if(prenext>0){
+   prenext=prenext-1;}
+   itemScrollController.scrollTo(
+  index: prenext,
+  duration: widget.stepReachedAnimationDuration,
+        curve: widget.stepReachedAnimationEffect);
+ }
+  
+  
   /// Contains the logic for going to the next step.
   void _goToNextStep() {
     if (_selectedIndex < widget.children!.length - 1 && widget.steppingEnabled) {
