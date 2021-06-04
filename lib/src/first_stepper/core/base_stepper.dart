@@ -193,9 +193,10 @@ class _BaseStepperState extends State<BaseStepper> {
   @override
   Widget build(BuildContext context) {
     //get width of _stepperBuilder
+    _stepperBuilder();
     var sizeStepper = _keyStepperRow.currentContext?.size;
     
-    double width=sizeStepper.width;
+    double width=sizeStepper?.width;
     bool enable;
     if (width>widget.maxwidth) enable=true;
     else enable=false;
