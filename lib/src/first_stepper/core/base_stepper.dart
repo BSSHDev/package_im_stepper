@@ -86,7 +86,7 @@ class BaseStepper extends StatefulWidget {
   BaseStepper({
     required this.titles,
     this.children,
-    this.maxwidth,
+    required this.maxwidth,
     this.nextPreviousButtonsDisabled = true,
     this.stepTappingDisabled = true,
     this.previousButtonIcon,
