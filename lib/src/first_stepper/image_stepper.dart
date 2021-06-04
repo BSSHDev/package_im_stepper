@@ -80,7 +80,7 @@ class ImageStepper extends StatelessWidget {
   ImageStepper({
     required this.titles,
     this.images,
-    this.maxwidth,
+    required this.maxwidth,
     this.enableNextPreviousButtons = true,
     this.enableStepTapping = true,
     this.previousButtonIcon,
