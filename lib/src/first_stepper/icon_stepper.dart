@@ -8,6 +8,8 @@ class IconStepper extends StatelessWidget {
   final List<Icon>? icons;
   
   final List<String>? titles;
+  
+  final double maxwidth;
 
   /// Whether to enable or disable the next and previous buttons.
   final bool enableNextPreviousButtons;
@@ -79,6 +81,7 @@ class IconStepper extends StatelessWidget {
   IconStepper({
     required this.titles,
     this.icons,
+    this.maxwidth,
     this.enableNextPreviousButtons = true,
     this.enableStepTapping = true,
     this.previousButtonIcon,
@@ -107,6 +110,7 @@ class IconStepper extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseStepper(
       titles:titles,
+      maxwidth:maxwidth,
       children: _iconsWithSizeOverridden(),
       nextPreviousButtonsDisabled: enableNextPreviousButtons,
       stepTappingDisabled: enableStepTapping,
