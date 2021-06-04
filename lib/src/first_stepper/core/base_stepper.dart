@@ -133,13 +133,13 @@ class BaseStepper extends StatefulWidget {
 class _BaseStepperState extends State<BaseStepper> {
   ScrollController? _scrollController;
   late int _selectedIndex;
-  int prenext;
+  //int prenext;
  
   @override
   void initState() {
     _selectedIndex = widget.activeStep;
     this._scrollController = ScrollController();
-    prenext=0;
+   // prenext=0;
     super.initState();
   }
 
@@ -331,21 +331,13 @@ class _BaseStepperState extends State<BaseStepper> {
             Icon(
               widget.direction == Axis.horizontal ? Icons.arrow_right : Icons.arrow_drop_down,
             ),
-        onPressed:goNext,
-       // onPressed: _goToNextStep,
+       // onPressed:goNext,
+        onPressed: _goToNextStep,
       ),
     );
   }
   
-  void goNext(){
-    prenext=prenext+1;
-    _scrollController.animateTo(
-      prenext,
-      duration: Duration(milliseconds: 500),
-      curve: Curves.easeInOutQuart,
-    );
-}
-
+ 
 
   /// Contains the logic for going to the next step.
   void _goToNextStep() {
