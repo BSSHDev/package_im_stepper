@@ -193,11 +193,12 @@ class _BaseStepperState extends State<BaseStepper> {
   @override
   Widget build(BuildContext context) {
     //get width of _stepperBuilder
-     final RenderBox renderBoxStepper = _keyStepperRow.currentContext?.findRenderObject();
+     final RenderBox renderBoxStepper = _keyStepperRow.currentContext?.findRenderObject() as RenderBox;
     final sizeStepper = renderBoxStepper.size;
     final width=sizeStepper.width;
-    if (width>widget.maxwidth) nextPreviousButtonsDisabled=false;
-    else nextPreviousButtonsDisabled=true;
+    bool enable;
+    if (width>widget.maxwidth) enable=true;
+    else enable=false;
     
     // Controls scrolling behavior.
     if (!widget.scrollingDisabled) WidgetsBinding.instance!.addPostFrameCallback(_afterLayout);
@@ -206,24 +207,24 @@ class _BaseStepperState extends State<BaseStepper> {
         ? Row(
         mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              widget.nextPreviousButtonsDisabled ? _previousButton() : Container(),
+              enable ? _previousButton() : Container(),
              
-               !nextPreviousButtonsDisabled?Container(
+               enable?Container(
                  constraints: BoxConstraints(
     maxWidth: widget.maxwidth,
 ),
                  child:_stepperBuilder()):_stepperBuilder(),
               
-              widget.nextPreviousButtonsDisabled ? _nextButton() : Container(),
+              enable ? _nextButton() : Container(),
             ],
           )
         : Column(
             children: <Widget>[
-              widget.nextPreviousButtonsDisabled ? _previousButton() : Container(),
+              enable ? _previousButton() : Container(),
               Expanded(
                 child: _stepperBuilder(),
               ),
-              widget.nextPreviousButtonsDisabled ? _nextButton() : Container(),
+              enable ? _nextButton() : Container(),
             ],
           );
   }
