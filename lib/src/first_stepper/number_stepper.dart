@@ -84,7 +84,7 @@ class NumberStepper extends StatelessWidget {
   NumberStepper({
     required this.titles,
     this.numbers,
-    this.maxwidth,
+    required this.maxwidth,
     this.enableNextPreviousButtons = true,
     this.enableStepTapping = true,
     this.previousButtonIcon,
