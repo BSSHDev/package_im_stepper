@@ -190,7 +190,7 @@ class _BaseStepperState extends State<BaseStepper> {
     maxWidth: widget.maxwidth,
 ),
         child:ScrollablePositionedList.builder(
-  itemCount: widget.children.length,
+  itemCount: widget.children?.length,
   itemBuilder: (context, index) => widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
   itemScrollController: itemScrollController,
   itemPositionsListener: itemPositionsListener,
@@ -353,7 +353,7 @@ class _BaseStepperState extends State<BaseStepper> {
   }
   
  void _goNext() {
-   if(prenext<widget.children?.length){
+   if(prenext<widget.children!.length){
    prenext=prenext+1;}
    itemScrollController.scrollTo(
   index: prenext,
