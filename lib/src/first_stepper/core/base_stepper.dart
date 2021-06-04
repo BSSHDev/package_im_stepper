@@ -133,9 +133,7 @@ class BaseStepper extends StatefulWidget {
 class _BaseStepperState extends State<BaseStepper> {
   ScrollController? _scrollController;
   late int _selectedIndex;
-  GlobalKey _keyStepperRow = GlobalKey();
-  bool enable=true;
-  
+ 
   @override
   void initState() {
     _selectedIndex = widget.activeStep;
@@ -175,30 +173,14 @@ class _BaseStepperState extends State<BaseStepper> {
   
    /// Builds the stepper.
   Widget _stepperBuilder() {
-    var sizeStepper = _keyStepperRow.currentContext?.size;
-    
-    var width=sizeStepper?.width;
-    if (width?>widget.maxwidth) enable=true;
-    else enable=false;
+  
     return Align(
       alignment: widget.alignment ?? Alignment.center,
-      child:enable? Container(
+      child:Container(
          
                constraints: BoxConstraints(
     maxWidth: widget.maxwidth,
 ),
-        child:SingleChildScrollView(
-        scrollDirection: widget.direction,
-        controller: _scrollController,
-        physics: widget.scrollingDisabled ? NeverScrollableScrollPhysics() : ClampingScrollPhysics(),
-        child: Container(
-        
-          margin: const EdgeInsets.symmetric(horizontal: 8.0),
-          padding: const EdgeInsets.all(3.0),
-          child: widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
-        ),
-      )): Container(
-         
         child:SingleChildScrollView(
         scrollDirection: widget.direction,
         controller: _scrollController,
@@ -225,20 +207,20 @@ class _BaseStepperState extends State<BaseStepper> {
         ? Row(
         mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              enable ? _previousButton() : Container(),
+              widget.nextPreviousButtonsDisabled ? _previousButton() : Container(),
              
                _stepperBuilder(),
               
-              enable ? _nextButton() : Container(),
+              widget.nextPreviousButtonsDisabled  ? _nextButton() : Container(),
             ],
           )
         : Column(
             children: <Widget>[
-              enable ? _previousButton() : Container(),
+              widget.nextPreviousButtonsDisabled  ? _previousButton() : Container(),
               Expanded(
                 child: _stepperBuilder(),
               ),
-              enable ? _nextButton() : Container(),
+              widget.nextPreviousButtonsDisabled  ? _nextButton() : Container(),
             ],
           );
   }
