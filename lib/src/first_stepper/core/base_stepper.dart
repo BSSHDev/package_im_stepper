@@ -134,7 +134,8 @@ class _BaseStepperState extends State<BaseStepper> {
   ScrollController? _scrollController;
   late int _selectedIndex;
   GlobalKey _keyStepperRow = GlobalKey();
-
+  bool enable=true;
+  
   @override
   void initState() {
     _selectedIndex = widget.activeStep;
@@ -174,32 +175,48 @@ class _BaseStepperState extends State<BaseStepper> {
   
    /// Builds the stepper.
   Widget _stepperBuilder() {
+    var sizeStepper = _keyStepperRow.currentContext?.size;
+    
+    var width=sizeStepper?.width;
+    if (width>widget.maxwidth) enable=true;
+    else enable=false;
     return Align(
       alignment: widget.alignment ?? Alignment.center,
-      child: SingleChildScrollView(
+      child:enable? Container(
+         
+               constraints: BoxConstraints(
+    maxWidth: widget.maxwidth,
+),
+        child:SingleChildScrollView(
         scrollDirection: widget.direction,
         controller: _scrollController,
         physics: widget.scrollingDisabled ? NeverScrollableScrollPhysics() : ClampingScrollPhysics(),
         child: Container(
-          key: _keyStepperRow,
+        
           margin: const EdgeInsets.symmetric(horizontal: 8.0),
           padding: const EdgeInsets.all(3.0),
           child: widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
         ),
-      ),
+      )): Container(
+         
+        child:SingleChildScrollView(
+        scrollDirection: widget.direction,
+        controller: _scrollController,
+        physics: widget.scrollingDisabled ? NeverScrollableScrollPhysics() : ClampingScrollPhysics(),
+        child: Container(
+        
+          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.all(3.0),
+          child: widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
+        ),
+      )),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     //get width of _stepperBuilder
-    _stepperBuilder();
-    var sizeStepper = _keyStepperRow.currentContext?.size;
     
-    var width=sizeStepper?.width;
-    bool enable;
-    if (width>widget.maxwidth) enable=true;
-    else enable=false;
     
     // Controls scrolling behavior.
     if (!widget.scrollingDisabled) WidgetsBinding.instance!.addPostFrameCallback(_afterLayout);
@@ -210,11 +227,7 @@ class _BaseStepperState extends State<BaseStepper> {
             children: <Widget>[
               enable ? _previousButton() : Container(),
              
-               enable?Container(
-                 constraints: BoxConstraints(
-    maxWidth: widget.maxwidth,
-),
-                 child:_stepperBuilder()):_stepperBuilder(),
+               _stepperBuilder(),
               
               enable ? _nextButton() : Container(),
             ],
