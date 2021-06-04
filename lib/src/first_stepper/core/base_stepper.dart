@@ -186,7 +186,7 @@ class _BaseStepperState extends State<BaseStepper> {
                  constraints: BoxConstraints(
     maxWidth: widget.maxwidth,
 ),
-                 child:_stepperBuilder()),
+                 child:Expanded(child:_stepperBuilder())),
               
               widget.nextPreviousButtonsDisabled ? _nextButton() : Container(),
             ],
