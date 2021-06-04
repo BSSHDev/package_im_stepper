@@ -177,9 +177,9 @@ class _BaseStepperState extends State<BaseStepper> {
         mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               widget.nextPreviousButtonsDisabled ? _previousButton() : Container(),
-              Expanded(
-                child: _stepperBuilder(),
-              ),
+             
+               _stepperBuilder(),
+              
               widget.nextPreviousButtonsDisabled ? _nextButton() : Container(),
             ],
           )
