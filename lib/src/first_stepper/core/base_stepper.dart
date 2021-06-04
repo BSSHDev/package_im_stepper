@@ -189,7 +189,7 @@ class _BaseStepperState extends State<BaseStepper> {
                constraints: BoxConstraints(
     maxWidth: widget.maxwidth,
 ),
-        child:ScrollablePositionedList.builder(
+       /* child:ScrollablePositionedList.builder(
   itemCount: widget.children?.length,
   scrollDirection : widget.direction,
   itemBuilder: (context, index) => widget.direction == Axis.horizontal
@@ -211,8 +211,8 @@ class _BaseStepperState extends State<BaseStepper> {
               )),
   itemScrollController: itemScrollController,
   itemPositionsListener: itemPositionsListener,
-)
-        /*child:SingleChildScrollView(
+)*/
+        child:SingleChildScrollView(
         scrollDirection: widget.direction,
         controller: _scrollController,
         physics: widget.scrollingDisabled ? NeverScrollableScrollPhysics() : ClampingScrollPhysics(),
@@ -222,7 +222,7 @@ class _BaseStepperState extends State<BaseStepper> {
           padding: const EdgeInsets.all(3.0),
           child: widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
         ),
-      )*/
+      )
       
       ),
     );
@@ -347,8 +347,8 @@ class _BaseStepperState extends State<BaseStepper> {
             Icon(
               widget.direction == Axis.horizontal ? Icons.arrow_left : Icons.arrow_drop_up,
             ),
-        onPressed:_goPrevious,
-       // onPressed: _goToPreviousStep,
+       // onPressed:_goPrevious,
+        onPressed: _goToPreviousStep,
       ),
     );
   }
@@ -363,8 +363,8 @@ class _BaseStepperState extends State<BaseStepper> {
             Icon(
               widget.direction == Axis.horizontal ? Icons.arrow_right : Icons.arrow_drop_down,
             ),
-        onPressed:_goNext,
-       // onPressed: _goToNextStep,
+        //onPressed:_goNext,
+        onPressed: _goToNextStep,
       ),
     );
   }
