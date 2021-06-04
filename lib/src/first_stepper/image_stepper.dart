@@ -7,6 +7,8 @@ class ImageStepper extends StatelessWidget {
   final List<ImageProvider<dynamic>>? images;
   
   final List<String>? titles;
+  
+  final double maxwidth;
 
   /// Whether to enable or disable the next and previous buttons.
   final bool enableNextPreviousButtons;
@@ -78,6 +80,7 @@ class ImageStepper extends StatelessWidget {
   ImageStepper({
     required this.titles,
     this.images,
+    this.maxwidth,
     this.enableNextPreviousButtons = true,
     this.enableStepTapping = true,
     this.previousButtonIcon,
@@ -107,6 +110,7 @@ class ImageStepper extends StatelessWidget {
     return BaseStepper(
       children: _imagesWrappedInCircleAvatar(),
       titles:titles,
+      maxwidth:maxwidth,
       nextPreviousButtonsDisabled: enableNextPreviousButtons,
       stepTappingDisabled: enableStepTapping,
       previousButtonIcon: previousButtonIcon,
