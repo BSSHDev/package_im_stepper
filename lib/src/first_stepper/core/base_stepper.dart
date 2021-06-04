@@ -353,7 +353,7 @@ class _BaseStepperState extends State<BaseStepper> {
   }
   
  void _goNext() {
-   if(prenext<widget.children.length){
+   if(prenext<widget.children?.length){
    prenext=prenext+1;}
    itemScrollController.scrollTo(
   index: prenext,
