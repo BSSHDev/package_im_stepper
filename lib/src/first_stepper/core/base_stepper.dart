@@ -12,6 +12,9 @@ class BaseStepper extends StatefulWidget {
   
   //title of each step
   final List<String>? titles;
+  
+  //fix the maxwidth of steppers
+  final double maxwidth;
 
   /// Whether to enable or disable the next and previous buttons.
   final bool nextPreviousButtonsDisabled;
@@ -83,6 +86,7 @@ class BaseStepper extends StatefulWidget {
   BaseStepper({
     required this.titles,
     this.children,
+    this.maxwidth,
     this.nextPreviousButtonsDisabled = true,
     this.stepTappingDisabled = true,
     this.previousButtonIcon,
@@ -178,7 +182,11 @@ class _BaseStepperState extends State<BaseStepper> {
             children: <Widget>[
               widget.nextPreviousButtonsDisabled ? _previousButton() : Container(),
              
-               _stepperBuilder(),
+               Container(
+                 constraints: BoxConstraints(
+    maxWidth: widget.maxwidth,
+),
+                 child:_stepperBuilder()),
               
               widget.nextPreviousButtonsDisabled ? _nextButton() : Container(),
             ],
