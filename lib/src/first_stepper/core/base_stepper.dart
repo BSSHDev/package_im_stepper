@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/dotted_line.dart';
 import 'base_indicator.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 /// Callback is fired when a step is reached.
 typedef OnStepReached = void Function(int index);
@@ -134,6 +135,11 @@ class _BaseStepperState extends State<BaseStepper> {
   ScrollController? _scrollController;
   late int _selectedIndex;
   //int prenext;
+   final ItemScrollController itemScrollController = ItemScrollController();
+
+  /// Listener that reports the position of items when the list is scrolled.
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
  
   @override
   void initState() {
