@@ -380,20 +380,35 @@ class _BaseStepperState extends State<BaseStepper> {
   duration: widget.stepReachedAnimationDuration,
         curve: widget.stepReachedAnimationEffect);
    print(prenext);
-    min=itemPositionsListener.itemPositions.positions
+    ValueListenableBuilder<Iterable<ItemPosition>>(
+        valueListenable: itemPositionsListener.itemPositions,
+        builder: (context, positions, child) {
+         
+          if (positions.isNotEmpty) {
+            // Determine the first visible item by finding the item with the
+            // smallest trailing edge that is greater than 0.  i.e. the first
+            // item whose trailing edge in visible in the viewport.
+            min = positions
                 .where((ItemPosition position) => position.itemTrailingEdge > 0)
                 .reduce((ItemPosition min, ItemPosition position) =>
                     position.itemTrailingEdge < min.itemTrailingEdge
                         ? position
                         : min)
                 .index;
-     max = itemPositionsListener.itemPositions.positions
+            // Determine the last visible item by finding the item with the
+            // greatest leading edge that is less than 1.  i.e. the last
+            // item whose leading edge in visible in the viewport.
+            max = positions
                 .where((ItemPosition position) => position.itemLeadingEdge < 1)
                 .reduce((ItemPosition max, ItemPosition position) =>
                     position.itemLeadingEdge > max.itemLeadingEdge
                         ? position
                         : max)
                 .index;
+          }
+         
+        },
+      );
    setState(() {
        print(min);
      print(max);
@@ -408,20 +423,36 @@ class _BaseStepperState extends State<BaseStepper> {
   duration: widget.stepReachedAnimationDuration,
         curve: widget.stepReachedAnimationEffect);
     print(prenext);
-    min=itemPositionsListener.itemPositions.positions
+     ValueListenableBuilder<Iterable<ItemPosition>>(
+        valueListenable: itemPositionsListener.itemPositions,
+        builder: (context, positions, child) {
+         
+          if (positions.isNotEmpty) {
+            // Determine the first visible item by finding the item with the
+            // smallest trailing edge that is greater than 0.  i.e. the first
+            // item whose trailing edge in visible in the viewport.
+            min = positions
                 .where((ItemPosition position) => position.itemTrailingEdge > 0)
                 .reduce((ItemPosition min, ItemPosition position) =>
                     position.itemTrailingEdge < min.itemTrailingEdge
                         ? position
                         : min)
                 .index;
-     max = itemPositionsListener.itemPositions.positions
+            // Determine the last visible item by finding the item with the
+            // greatest leading edge that is less than 1.  i.e. the last
+            // item whose leading edge in visible in the viewport.
+            max = positions
                 .where((ItemPosition position) => position.itemLeadingEdge < 1)
                 .reduce((ItemPosition max, ItemPosition position) =>
                     position.itemLeadingEdge > max.itemLeadingEdge
                         ? position
                         : max)
                 .index;
+          }
+         
+        },
+      );
+
     setState(() {
         print(min);
      print(max);
