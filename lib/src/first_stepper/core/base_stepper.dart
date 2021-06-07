@@ -169,7 +169,7 @@ class _BaseStepperState extends State<BaseStepper> {
   void _afterLayout(_) {
     // ! Provide detailed explanation.
     for (int i = 0; i < widget.children!.length; i++) {
-      ItemScrollController!.animateTo(
+      ItemScrollController.animateTo(
         i * ((widget.stepRadius * 2) + widget.lineLength),
         duration: widget.stepReachedAnimationDuration,
         curve: widget.stepReachedAnimationEffect,
