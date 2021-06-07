@@ -406,7 +406,7 @@ class _BaseStepperState extends State<BaseStepper> {
                         : max)
                 .index;
           }
-         
+         return Card();
         },
       );
    setState(() {
@@ -449,7 +449,7 @@ class _BaseStepperState extends State<BaseStepper> {
                         : max)
                 .index;
           }
-         
+         return Card();
         },
       );
 
