@@ -169,7 +169,7 @@ class _BaseStepperState extends State<BaseStepper> {
   void _afterLayout(_) {
     // ! Provide detailed explanation.
     for (int i = 0; i < widget.children!.length; i++) {
-      _scrollController!.animateTo(
+      ItemScrollController!.animateTo(
         i * ((widget.stepRadius * 2) + widget.lineLength),
         duration: widget.stepReachedAnimationDuration,
         curve: widget.stepReachedAnimationEffect,
@@ -340,7 +340,7 @@ class _BaseStepperState extends State<BaseStepper> {
   /// The previous button.
   Widget _previousButton() {
     return IgnorePointer(
-      ignoring: _selectedIndex == 0,
+      ignoring: prenext == 0,
       child: IconButton(
         visualDensity: VisualDensity.compact,
         icon: widget.previousButtonIcon ??
@@ -356,7 +356,7 @@ class _BaseStepperState extends State<BaseStepper> {
   /// The next button.
   Widget _nextButton() {
     return IgnorePointer(
-      ignoring: _selectedIndex == widget.children!.length - 1,
+      ignoring: prenext == widget.children!.length - 1,
       child: IconButton(
         visualDensity: VisualDensity.compact,
         icon: widget.nextButtonIcon ??
