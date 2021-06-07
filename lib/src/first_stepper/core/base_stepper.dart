@@ -376,6 +376,7 @@ class _BaseStepperState extends State<BaseStepper> {
   index: prenext,
   duration: widget.stepReachedAnimationDuration,
         curve: widget.stepReachedAnimationEffect);
+   print(prenext);
  }
 
   void _goPrevious() {
@@ -385,6 +386,7 @@ class _BaseStepperState extends State<BaseStepper> {
   index: prenext,
   duration: widget.stepReachedAnimationDuration,
         curve: widget.stepReachedAnimationEffect);
+    print(prenext);
  }
   
   
