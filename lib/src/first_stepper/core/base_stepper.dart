@@ -169,7 +169,7 @@ class _BaseStepperState extends State<BaseStepper> {
   void _afterLayout(_) {
     // ! Provide detailed explanation.
     for (int i = 0; i < widget.children!.length; i++) {
-      ItemScrollController.animateTo(
+      _scrollController!.animateTo(
         i * ((widget.stepRadius * 2) + widget.lineLength),
         duration: widget.stepReachedAnimationDuration,
         curve: widget.stepReachedAnimationEffect,
@@ -234,7 +234,7 @@ class _BaseStepperState extends State<BaseStepper> {
     
     
     // Controls scrolling behavior.
-    if (!widget.scrollingDisabled) WidgetsBinding.instance!.addPostFrameCallback(_afterLayout);
+   // if (!widget.scrollingDisabled) WidgetsBinding.instance!.addPostFrameCallback(_afterLayout);
 
     return widget.direction == Axis.horizontal
         ? Row(
