@@ -140,6 +140,9 @@ class _BaseStepperState extends State<BaseStepper> {
   /// Listener that reports the position of items when the list is scrolled.
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
+  
+  int min=0;
+  int max=0;
  
   @override
   void initState() {
@@ -340,7 +343,7 @@ class _BaseStepperState extends State<BaseStepper> {
   /// The previous button.
   Widget _previousButton() {
     return IgnorePointer(
-      ignoring: prenext == 0,
+      ignoring: min == 0,
       child: IconButton(
         visualDensity: VisualDensity.compact,
         icon: widget.previousButtonIcon ??
@@ -356,7 +359,7 @@ class _BaseStepperState extends State<BaseStepper> {
   /// The next button.
   Widget _nextButton() {
     return IgnorePointer(
-      ignoring: prenext == widget.children!.length - 1,
+      ignoring: max == widget.children!.length - 1,
       child: IconButton(
         visualDensity: VisualDensity.compact,
         icon: widget.nextButtonIcon ??
@@ -377,6 +380,24 @@ class _BaseStepperState extends State<BaseStepper> {
   duration: widget.stepReachedAnimationDuration,
         curve: widget.stepReachedAnimationEffect);
    print(prenext);
+    min=itemPositionsListener.itemPositions.positions
+                .where((ItemPosition position) => position.itemTrailingEdge > 0)
+                .reduce((ItemPosition min, ItemPosition position) =>
+                    position.itemTrailingEdge < min.itemTrailingEdge
+                        ? position
+                        : min)
+                .index;
+     max = itemPositionsListener.itemPositions.positions
+                .where((ItemPosition position) => position.itemLeadingEdge < 1)
+                .reduce((ItemPosition max, ItemPosition position) =>
+                    position.itemLeadingEdge > max.itemLeadingEdge
+                        ? position
+                        : max)
+                .index;
+   setState(() {
+       print(min);
+     print(max);
+      });
  }
 
   void _goPrevious() {
@@ -387,6 +408,25 @@ class _BaseStepperState extends State<BaseStepper> {
   duration: widget.stepReachedAnimationDuration,
         curve: widget.stepReachedAnimationEffect);
     print(prenext);
+    min=itemPositionsListener.itemPositions.positions
+                .where((ItemPosition position) => position.itemTrailingEdge > 0)
+                .reduce((ItemPosition min, ItemPosition position) =>
+                    position.itemTrailingEdge < min.itemTrailingEdge
+                        ? position
+                        : min)
+                .index;
+     max = itemPositionsListener.itemPositions.positions
+                .where((ItemPosition position) => position.itemLeadingEdge < 1)
+                .reduce((ItemPosition max, ItemPosition position) =>
+                    position.itemLeadingEdge > max.itemLeadingEdge
+                        ? position
+                        : max)
+                .index;
+    setState(() {
+        print(min);
+     print(max);
+      });
+    
  }
   
   
