@@ -137,7 +137,7 @@ class _BaseStepperState extends State<BaseStepper> {
   ScrollController? _scrollController;
   late int _selectedIndex;
   int prenext=0;
-   final ItemScrollController itemScrollController = ItemScrollController();
+  // final ItemScrollController itemScrollController = ItemScrollController();
 
   /// Listener that reports the position of items when the list is scrolled.
   //final ItemPositionsListener itemPositionsListener =
