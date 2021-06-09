@@ -145,7 +145,7 @@ class _BaseStepperState extends State<BaseStepper> {
   
   AutoScrollController itemScrollController = AutoScrollController(
         0,
-        axis: widget.direction);
+        axis: Axis.horizontal);
   
   int min=0;
   int max=0;
