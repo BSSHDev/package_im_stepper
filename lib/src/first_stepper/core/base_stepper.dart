@@ -403,7 +403,7 @@ class _BaseStepperState extends State<BaseStepper> {
  Future _goNext() async{
    if(prenext<widget.children!.length){
    prenext=prenext+1;}
-   await controller.scrollToIndex(prenext, preferPosition: AutoScrollPosition.begin);
+   await itemScrollController.scrollToIndex(prenext, preferPosition: AutoScrollPosition.begin);
   
   /* itemScrollController.scrollTo(
   index: prenext,
@@ -418,7 +418,7 @@ class _BaseStepperState extends State<BaseStepper> {
   Future _goPrevious() async{
     if(prenext>0){
    prenext=prenext-1;}
-    await controller.scrollToIndex(prenext, preferPosition: AutoScrollPosition.begin);
+    await itemScrollController.scrollToIndex(prenext, preferPosition: AutoScrollPosition.begin);
  /*  itemScrollController.scrollTo(
   index: prenext,
   duration: widget.stepReachedAnimationDuration,
