@@ -155,7 +155,7 @@ class _BaseStepperState extends State<BaseStepper> {
     itemPositionsListener = AutoScrollController(
         viewportBoundaryGetter: () =>
             Rect.fromLTRB(0, 0, 0, MediaQuery.of(context).padding.bottom),
-        axis: scrollDirection);
+        axis: widget.direction);
    // prenext=0;
     super.initState();
   }
