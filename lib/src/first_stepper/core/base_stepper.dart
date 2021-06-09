@@ -196,18 +196,26 @@ class _BaseStepperState extends State<BaseStepper> {
   itemCount: widget.children?.length,
   scrollDirection : widget.direction,
   itemBuilder: (context, index) => widget.direction == Axis.horizontal
-            ? Row(
+            ? Container(
+               constraints: BoxConstraints(
+    maxWidth: widget.maxwidth,
+),
+              child:Row(
                 children: <Widget>[
                   _customizedIndicator(index),
                   _customizedDottedLine(index, Axis.horizontal),
                 ],
-              )
-            : Column(
+              ))
+            : Container(
+               constraints: BoxConstraints(
+    maxHeight: widget.maxwidth,
+),
+              child:Column(
                 children: <Widget>[
                   _customizedIndicator(index),
                   _customizedDottedLine(index, Axis.vertical),
                 ],
-              ),
+              )),
   itemScrollController: itemScrollController,
   itemPositionsListener: itemPositionsListener,
 )
