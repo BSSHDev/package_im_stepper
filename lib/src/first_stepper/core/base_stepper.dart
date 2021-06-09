@@ -192,18 +192,20 @@ class _BaseStepperState extends State<BaseStepper> {
                constraints: BoxConstraints(
     maxWidth: widget.maxwidth,
 ),
-      /* child:ScrollablePositionedList.builder(
+       child:ScrollablePositionedList.builder(
   itemCount: widget.children?.length,
   scrollDirection : widget.direction,
   itemBuilder: (context, index) => widget.direction == Axis.horizontal
             ? 
               Row(
+                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   _customizedIndicator(index),
                   _customizedDottedLine(index, Axis.horizontal),
                 ],
               )
             : Column(
+              mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   _customizedIndicator(index),
                   _customizedDottedLine(index, Axis.vertical),
@@ -211,11 +213,11 @@ class _BaseStepperState extends State<BaseStepper> {
               ),
   itemScrollController: itemScrollController,
   itemPositionsListener: itemPositionsListener,
-)*/
-        child:SingleChildScrollView(
+)
+       /* child:SingleChildScrollView(
         scrollDirection: widget.direction,
-          controller:itemScrollController,
-        //controller: _scrollController,
+        //controller:itemScrollController,
+        controller: _scrollController,
         physics: widget.scrollingDisabled ? NeverScrollableScrollPhysics() : ClampingScrollPhysics(),
         child: Container(
         
@@ -223,7 +225,7 @@ class _BaseStepperState extends State<BaseStepper> {
           padding: const EdgeInsets.all(3.0),
           child: widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
         ),
-      )
+      )*/
       
       ),
     );
