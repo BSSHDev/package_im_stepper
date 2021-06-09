@@ -144,7 +144,7 @@ class _BaseStepperState extends State<BaseStepper> {
   //    ItemPositionsListener.create();
   
   AutoScrollController itemScrollController = AutoScrollController(
-        0,
+        
         axis: Axis.horizontal);
   
   int min=0;
