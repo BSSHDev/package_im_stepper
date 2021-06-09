@@ -143,7 +143,7 @@ class _BaseStepperState extends State<BaseStepper> {
   //final ItemPositionsListener itemPositionsListener =
   //    ItemPositionsListener.create();
   
-  AutoScrollController itemPositionsListener;
+  AutoScrollController itemScrollController;
   
   int min=0;
   int max=0;
