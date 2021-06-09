@@ -196,7 +196,7 @@ class _BaseStepperState extends State<BaseStepper> {
   //itemCount: widget.children?.length,
   itemCount:1,
   scrollDirection : widget.direction,
-  itemBuilder: (context, index) =>widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps())
+  itemBuilder: (context, index) =>widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
          /*widget.direction == Axis.horizontal
             ? /*Container(
               
