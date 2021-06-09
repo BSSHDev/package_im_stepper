@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   scrollable_positioned_list: ^0.1.10
+  scroll_to_index: any
 
 dev_dependencies:
   flutter_test:
