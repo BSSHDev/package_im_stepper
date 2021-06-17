@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import '../../core/dotted_line.dart';
 import 'base_indicator.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
-
 
 /// Callback is fired when a step is reached.
 typedef OnStepReached = void Function(int index);
@@ -137,15 +135,11 @@ class _BaseStepperState extends State<BaseStepper> {
   ScrollController? _scrollController;
   late int _selectedIndex;
   int prenext=0;
-  // final ItemScrollController itemScrollController = ItemScrollController();
+   final ItemScrollController itemScrollController = ItemScrollController();
 
   /// Listener that reports the position of items when the list is scrolled.
-  //final ItemPositionsListener itemPositionsListener =
-  //    ItemPositionsListener.create();
-  
-  AutoScrollController itemScrollController = AutoScrollController(
-        
-        axis: Axis.horizontal);
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
   
   int min=0;
   int max=0;
@@ -154,7 +148,6 @@ class _BaseStepperState extends State<BaseStepper> {
   void initState() {
     _selectedIndex = widget.activeStep;
     this._scrollController = ScrollController();
-    
    // prenext=0;
     super.initState();
   }
@@ -199,7 +192,7 @@ class _BaseStepperState extends State<BaseStepper> {
                constraints: BoxConstraints(
     maxWidth: widget.maxwidth,
 ),
-     /*  child:ScrollablePositionedList.builder(
+       child:ScrollablePositionedList.builder(
   //itemCount: widget.children?.length,
   itemCount:1,
   scrollDirection : widget.direction,
@@ -232,11 +225,11 @@ class _BaseStepperState extends State<BaseStepper> {
               ),*/
   itemScrollController: itemScrollController,
   itemPositionsListener: itemPositionsListener,
-)*/
-        child:SingleChildScrollView(
+)
+       /* child:SingleChildScrollView(
         scrollDirection: widget.direction,
-        controller:itemScrollController,
-        //controller: _scrollController,
+        //controller:itemScrollController,
+        controller: _scrollController,
         physics: widget.scrollingDisabled ? NeverScrollableScrollPhysics() : ClampingScrollPhysics(),
         child: Container(
         
@@ -244,7 +237,7 @@ class _BaseStepperState extends State<BaseStepper> {
           padding: const EdgeInsets.all(3.0),
           child: widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
         ),
-      )
+      )*/
       
       ),
     );
@@ -369,10 +362,7 @@ class _BaseStepperState extends State<BaseStepper> {
             Icon(
               widget.direction == Axis.horizontal ? Icons.arrow_left : Icons.arrow_drop_up,
             ),
-         onPressed:() async{
-          await _goPrevious();
-        }
-       // onPressed:_goPrevious,
+        onPressed:_goPrevious,
        // onPressed: _goToPreviousStep,
       ),
     );
@@ -388,40 +378,32 @@ class _BaseStepperState extends State<BaseStepper> {
             Icon(
               widget.direction == Axis.horizontal ? Icons.arrow_right : Icons.arrow_drop_down,
             ),
-        onPressed:() async{
-          await _goNext();
-        }
-       // onPressed:_goNext,
+        onPressed:_goNext,
        // onPressed: _goToNextStep,
       ),
     );
   }
   
-  
-  
- Future _goNext() async{
+ void _goNext() {
    if(prenext<widget.children!.length){
    prenext=prenext+1;}
-   await itemScrollController.scrollToIndex(prenext, preferPosition: AutoScrollPosition.begin);
-  
-  /* itemScrollController.scrollTo(
+   itemScrollController.scrollTo(
   index: prenext,
   duration: widget.stepReachedAnimationDuration,
-        curve: widget.stepReachedAnimationEffect);*/
+        curve: widget.stepReachedAnimationEffect);
   
    setState(() {
      print(prenext);
       });
  }
 
-  Future _goPrevious() async{
+  void _goPrevious() {
     if(prenext>0){
    prenext=prenext-1;}
-    await itemScrollController.scrollToIndex(prenext, preferPosition: AutoScrollPosition.begin);
- /*  itemScrollController.scrollTo(
+   itemScrollController.scrollTo(
   index: prenext,
   duration: widget.stepReachedAnimationDuration,
-        curve: widget.stepReachedAnimationEffect);*/
+        curve: widget.stepReachedAnimationEffect);
     
     
 
