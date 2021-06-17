@@ -192,43 +192,31 @@ class _BaseStepperState extends State<BaseStepper> {
                constraints: BoxConstraints(
     maxWidth: widget.maxwidth,
 ),
-       child:ScrollablePositionedList.builder(
-  //itemCount: widget.children?.length,
-  itemCount:1,
+        child:ScrollablePositionedList.builder(
+  itemCount: widget.children?.length,
   scrollDirection : widget.direction,
-  itemBuilder: (context, index) =>widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
-         /*widget.direction == Axis.horizontal
-            ? /*Container(
-              
-                  constraints: BoxConstraints(
-                    maxWidth:  widget.maxwidth/8,
-                  ),
-             child:*/ 
-         :Row(
-                mainAxisSize: MainAxisSize.min,
+  itemBuilder: (context, index) => widget.direction == Axis.horizontal
+            ? SizedBox(
+              height:200,
+              child:Row(
                 children: <Widget>[
                   _customizedIndicator(index),
                   _customizedDottedLine(index, Axis.horizontal),
                 ],
-              )
-            : /*Container(
-          constraints: BoxConstraints(
-                    maxWidth:  widget.maxwidth/8,
-                  ),
-         child:*/
-         Column(
-              mainAxisSize: MainAxisSize.min,
+              ))
+            : SizedBox(
+              width:200,
+              child:Column(
                 children: <Widget>[
                   _customizedIndicator(index),
                   _customizedDottedLine(index, Axis.vertical),
                 ],
-              ),*/
+              )),
   itemScrollController: itemScrollController,
   itemPositionsListener: itemPositionsListener,
 )
        /* child:SingleChildScrollView(
         scrollDirection: widget.direction,
-        //controller:itemScrollController,
         controller: _scrollController,
         physics: widget.scrollingDisabled ? NeverScrollableScrollPhysics() : ClampingScrollPhysics(),
         child: Container(
